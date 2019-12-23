@@ -1,7 +1,6 @@
-### 基于Hyperf(https://doc.hyperf.io/#/zh/README) 框架的 jwt 鉴权(https://github.com/phper666/jwt-auth)组件。
-### 进行重构，精简依赖 提升3/2性能。
+### 基于Hyperf(https://doc.hyperf.io/#/zh/README) 框架的 jwt 鉴权
+### 思路来源与 (https://github.com/phper666/jwt-auth)组件
 ### 重构sso单点登录token失效逻辑
-### 注意：
 ### 说明：
 
 > `hyperf-jwt` 支持单点登录、多点登录、支持注销 token(token会失效)、支持refresh换取新token 失效老token  
