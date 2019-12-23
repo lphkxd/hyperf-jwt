@@ -1,0 +1,8 @@
+/phpstan.neon
+/phpunit.xml
+/deploy.test.yml
+/README.md
+/vendor/
+/composer.lock
+/.idea/
+/runtime/
