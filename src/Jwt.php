@@ -14,6 +14,10 @@ class Jwt
 {
     const SCOPE_TOKEN = 'access';
     const SCOPE_REFRESH = 'refresh';
+
+    const PREFIX = 'auth:';
+    const PREFIX_LOG = 'auth_log:';
+
     //头部
     private static $header = array(
         'alg' => 'HS256', //生成signature的算法

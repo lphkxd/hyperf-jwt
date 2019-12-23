@@ -9,7 +9,7 @@ use Hyperf\Di\Annotation\Inject;
 use Hyperf\Di\Aop\AbstractAspect;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
 use Mzh\JwtAuth\Annotations\AuthUpEvict;
-use Mzh\JwtAuth\Auth;
+use Mzh\JwtAuth\Jwt;
 
 /**
  * 权限编辑。用户组编辑后更新权限验证缓存
@@ -39,13 +39,13 @@ class AuthUpEvictAspect extends AbstractAspect
             $list = AuthGroup::getGroupAuthUrl($group_id);
 
             //删除旧的
-            $keys = $this->redis->keys(Auth::prefix . "*") ?? [];
+            $keys = $this->redis->keys(Jwt::PREFIX . "*") ?? [];
             $this->redis->del($keys);
 
             //刷新新的进缓存
             foreach ($list as $groupId => $item) {
-                $this->redis->hMSet(Auth::prefix . $groupId, $item['menu']);
-                $this->redis->hMSet(Auth::prefixLogAuth . $groupId, $item['log']);
+                $this->redis->hMSet(Jwt::PREFIX . $groupId, $item['menu']);
+                $this->redis->hMSet(Jwt::PREFIX_LOG . $groupId, $item['log']);
             }
         }
         return $result;
