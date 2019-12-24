@@ -9,18 +9,13 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
+            'commands' => [
+            ],
             'annotations' => [
                 'scan' => [
                     'paths' => [
                         __DIR__,
-                    ]
-                ]
-            ],
-            'commands' => [
-            ],
-            'scan' => [
-                'paths' => [
-                    __DIR__,
+                    ],
                 ],
             ],
             'publish' => [
