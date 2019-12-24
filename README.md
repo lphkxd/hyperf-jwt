@@ -37,30 +37,8 @@ JWT_SECRET=hyperf
 JWT_TTL=60
 ```
 更多的配置请到 `config/autoload/jwt.php` 查看
-##### 4、（暂未增加）全局路由验证  
-在 `config/autoload/middlewaress.php` 配置文件中加入 `jwt` 验证中间件,所有的路由都会进行 `token` 的验证，例如：
-```shell
-<?php
-return [
-    'http' => [
-        Mzh\JwtAuth\Middleware\AuthMiddleware:class
-    ],
-];
-```
-##### 5、（暂未增加）局部验证 
-在 `config/routes.php` 文件中，想要验证的路由加入 `jwt` 验证中间件即可，例如：
-```shell
-<?php
 
-Router::addGroup('/v1', function () {
-    Router::get('/data', 'App\Controller\IndexController@getData');
-}, ['middleware' => [Mzh\JwtAuth\Middleware\AuthMiddleware:class]]);
-```
-##### 6、注解的路由验证
-请看官方文档：https://doc.hyperf.io/#/zh/middleware/middleware
-在你想要验证的地方加入 `jwt 验证中间` 件即可。
-
-##### 7、模拟登录获取token
+##### 4、模拟登录获取token
 ```shell
 <?php
 
@@ -107,11 +85,8 @@ class IndexController extends Controller
 ```
 注意：支持传入用户对象获取 token，支持token类型，
 
-##### 8、鉴权
-在需要鉴权的接口,请求该接口时在 `HTTP` 头部加入 或者在request json对象加入token 优先取头部
-```shell
-Authorization  Bearer token
-```
+##### 5、使用例子参考  https://github.com/lphkxd/hyperf-admin 
 
-##### 12、建议
+
+##### 6、建议
 > 目前 `jwt` 抛出的异常目前有两种类型 `Mzh\JwtAuth\Exception\TokenValidException` 和 `Mzh\JwtAuth\Exception\JWTException,TokenValidException` 异常为 token 验证失败的异常，会抛出 `401` ,`JWTException` 异常会抛出 `500`，最好你们自己在项目异常重新返回错误信息
