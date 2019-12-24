@@ -26,13 +26,13 @@ class AuthUpEvictAspect extends AbstractAspect
      * @Value("jwt.auth_prefix")
      * @var string
      */
-    private $auth_prefix;
+    private $auth_prefix = 'auth:';
 
     /**
      * @Value("jwt.auth_log_prefix")
      * @var string
      */
-    private $auth_log_prefix;
+    private $auth_log_prefix = 'auth_log:';
 
     /**
      * @Inject()
