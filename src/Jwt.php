@@ -62,10 +62,6 @@ class Jwt
      */
     private $secret;
 
-
-
-
-
     /**
      * 创建jtw token
      * @param array|JwtBuilder $payload jwt载荷

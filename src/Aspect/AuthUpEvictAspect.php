@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Mzh\JwtAuth\Aspect;
 
 use App\Model\AuthGroup;
-use Hyperf\Di\Annotation\Aspect;
+use Hyperf\Config\Annotation\Value;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Di\Aop\AbstractAspect;
 use Hyperf\Di\Aop\ProceedingJoinPoint;

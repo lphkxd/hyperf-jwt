@@ -36,7 +36,6 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.14",
-    "hyperf/testing": "1.0.*",
     "phpstan/phpstan": "^0.10.5",
     "swoft/swoole-ide-helper": "dev-master"
   },
@@ -51,6 +50,12 @@
   "extra": {
     "hyperf": {
       "config": "Mzh\\JwtAuth\\ConfigProvider"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/"
     }
   }
 }
