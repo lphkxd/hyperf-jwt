@@ -31,8 +31,8 @@
     "hyperf/utils": "~1.1.0",
     "hyperf/framework": "~1.1.0",
     "hyperf/di": "~1.1.0",
-    "hyperf/cache": "~1.1.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-redis": "*"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.14",

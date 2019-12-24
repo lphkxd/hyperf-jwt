@@ -22,6 +22,18 @@ class AuthUpEvictAspect extends AbstractAspect
     ];
 
     /**
+     * @Value("jwt.auth_prefix")
+     * @var string
+     */
+    private $auth_prefix;
+
+    /**
+     * @Value("jwt.auth_log_prefix")
+     * @var string
+     */
+    private $auth_log_prefix;
+
+    /**
      * @Inject()
      * @var \Redis
      */
@@ -37,15 +49,12 @@ class AuthUpEvictAspect extends AbstractAspect
             $AuthUpEvict = $metadata->method[AuthUpEvict::class];
             $group_id = $AuthUpEvict->group;
             $list = AuthGroup::getGroupAuthUrl($group_id);
-
             //删除旧的
-            $keys = $this->redis->keys(Jwt::PREFIX . "*") ?? [];
-            $this->redis->del($keys);
-
             //刷新新的进缓存
             foreach ($list as $groupId => $item) {
-                $this->redis->hMSet(Jwt::PREFIX . $groupId, $item['menu']);
-                $this->redis->hMSet(Jwt::PREFIX_LOG . $groupId, $item['log']);
+                $this->redis->del($this->auth_prefix . $groupId);
+                $this->redis->hMSet($this->auth_prefix . $groupId, $item['menu']);
+                $this->redis->hMSet($this->auth_log_prefix . $groupId, $item['log']);
             }
         }
         return $result;

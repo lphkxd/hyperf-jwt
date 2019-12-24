@@ -65,7 +65,8 @@ class Jwt
      */
     private $secret;
 
-    private static $Instance;
+
+
 
 
     /**
