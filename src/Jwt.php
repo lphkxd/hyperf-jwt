@@ -20,7 +20,6 @@ class Jwt
         'alg' => 'HS256', //生成signature的算法
         'typ' => 'JWT'  //类型
     );
-
     /**
      * @Inject()
      * @var WhiteList
@@ -49,13 +48,13 @@ class Jwt
      * @Value("jwt.ttl")
      * @var int
      */
-    protected $ttl;
+    protected $ttl = 3600;
 
     /**
      * @Value("jwt.refresh_ttl")
      * @var int
      */
-    protected $refreshTtl;
+    protected $refreshTtl = 7200;
     /**
      * @Value("jwt.secret")
      * @var string
@@ -70,11 +69,11 @@ class Jwt
      */
     public function createToken($payload, $type = Jwt::SCOPE_TOKEN)
     {
+        $time = time();
         if ($payload instanceof JwtBuilder) {
             $jwtObj = $payload;
         } else {
             $jwtObj = new JwtBuilder();
-            $time = time();
             if (isset($payload[$this->ssoKey])) {
                 $jwtObj->setAudience($payload[$this->ssoKey]);
             }
