@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Mzh\JwtAuth;
 
 use Hyperf\Config\Annotation\Value;
@@ -20,6 +21,7 @@ class Jwt
         'alg' => 'HS256', //生成signature的算法
         'typ' => 'JWT'  //类型
     );
+
     /**
      * @Inject()
      * @var WhiteList
@@ -67,28 +69,41 @@ class Jwt
      * @param string $type
      * @return JwtBuilder
      */
-    public function createToken($payload, $type = Jwt::SCOPE_TOKEN)
+    public function createToken($payload, $type = null)
     {
-        $time = time();
         if ($payload instanceof JwtBuilder) {
             $jwtObj = $payload;
         } else {
+            $time = time();
             $jwtObj = new JwtBuilder();
             if (isset($payload[$this->ssoKey])) {
                 $jwtObj->setAudience($payload[$this->ssoKey]);
             }
-            $jwtObj->setScope($type);
+            if ($jwtObj->getScope() == '') $jwtObj->setScope($type == null ? Jwt::SCOPE_TOKEN : $type);
             $jwtObj->setIssuedAt($time);// (iat claim) 发布时间
             $jwtObj->setNotBefore($time); // (nbf claim) 在此之前不可用
+            $jwtObj->setJwtData($payload);
+        }
+        if ($type != null) {
             switch ($type) {
                 case self::SCOPE_TOKEN:
-                    $jwtObj->setExpiration($time + $this->ttl);
+                    $jwtObj->setScope(self::SCOPE_TOKEN);
                     break;
                 case self::SCOPE_REFRESH:
-                    $jwtObj->setExpiration($time + $this->refreshTtl);
+                    $jwtObj->setScope(self::SCOPE_REFRESH);
+                    break;
+                default:
+                    throw new JwtException('不支持' . $type);
                     break;
             }
-            $jwtObj->setJwtData($payload);
+        }
+        switch ($payload->getScope()) {
+            case self::SCOPE_TOKEN:
+                $jwtObj->setExpiration(time() + $this->ttl);
+                break;
+            case self::SCOPE_REFRESH:
+                $jwtObj->setExpiration(time() + $this->refreshTtl);
+                break;
         }
         $version = uniqid();
         $jwtObj->setJwtId($version); // 设置jwt的jti
