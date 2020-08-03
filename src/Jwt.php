@@ -97,7 +97,7 @@ class Jwt
                     break;
             }
         }
-        switch ($payload->getScope()) {
+        switch ($jwtObj->getScope()) {
             case self::SCOPE_TOKEN:
                 $jwtObj->setExpiration(time() + $this->ttl);
                 break;
