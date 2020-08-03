@@ -20,7 +20,7 @@
 ### 使用：
 ##### 1、安装依赖 
 ```shell
-composer require mzh/hypetf-jwt
+composer require mzh/hyperf-jwt
 ``` 
 
 ##### 2、发布配置
