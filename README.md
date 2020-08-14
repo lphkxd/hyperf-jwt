@@ -1,4 +1,16 @@
 ### 基于Hyperf(https://doc.hyperf.io/#/zh/README) 框架的 jwt 鉴权
+
+<p align="center">
+    <a href="https://github.com/lphkxd/hyperf-jwt/releases"><img src="https://poser.pugx.org/mzh/hyperf-jwt/v/stable" alt="Stable Version"></a>
+    <a href="https://travis-ci.org/mzh/hyperf-jwt"><img src="https://travis-ci.org/mzh/hyperf-jwt.svg?branch=master" alt="Build Status"></a>
+    <a href="https://packagist.org/packages/mzh/hyperf-jwt"><img src="https://poser.pugx.org/mzh/hyperf-jwt/downloads" alt="Total Downloads"></a>
+    <a href="https://packagist.org/packages/mzh/hyperf-jwt"><img src="https://poser.pugx.org/mzh/hyperf-jwt/d/monthly" alt="Monthly Downloads"></a>
+    <a href="https://www.php.net"><img src="https://img.shields.io/badge/php-%3E=7.1-brightgreen.svg?maxAge=2592000" alt="Php Version"></a>
+    <a href="https://github.com/swoole/swoole-src"><img src="https://img.shields.io/badge/swoole-%3E=4.5-brightgreen.svg?maxAge=2592000" alt="Swoole Version"></a>
+    <a href="https://github.com/lphkxd/hyperf-jwt/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lphkxd/hyperf-jwt.svg?maxAge=2592000" alt=" License"></a>
+</p>
+
+
 ### 思路来源与 (https://github.com/phper666/jwt-auth)组件
 ### 重构sso单点登录token失效逻辑
 ### 说明：
